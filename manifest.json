@@ -1,0 +1,69 @@
+{
+  "author": {
+    "name": "Payload",
+    "url": "https://github.com/Payloadhq"
+  },
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=18"
+    }
+  },
+  "description": "Veyline by Payload, exposed for AI agents. Check a Veyline organization's entitlement and usage, and request signed, policy-enforced payment preflights (no funds move in a preflight). Requires your own Payload rail API key for an existing Veyline organization.",
+  "display_name": "Veyline by Payload",
+  "homepage": "https://payloadhq.github.io/veyline.html",
+  "icon": "icon.png",
+  "keywords": [
+    "veyline",
+    "mcp",
+    "ai-agents",
+    "payments",
+    "authorization",
+    "preflight",
+    "x402"
+  ],
+  "license": "MIT",
+  "long_description": "Veyline is Payload's noncustodial authorization layer: it decides whether an agent payment may proceed, under policy, before any wallet signs. This bundle installs the Veyline MCP server (Node.js standard library only, zero dependencies), which exposes the Payload rail's Veyline A2A skills as tools over stdio: veyline_status (read the authenticated organization's entitlement and tier; does not authorize a payment), veyline_usage (read the organization's quota and usage), and veyline_preflight (request a signed, short-lived, policy-enforced payment preflight; NO funds are transferred by a preflight). Every call goes to the live Payload rail (https://payload-rail.fly.dev) authenticated with YOUR OWN rail API key (Bearer) for an existing Veyline organization; the key is read from PAYLOAD_RAIL_API_KEY and never leaves your machine except as the Authorization header to the rail. With no key configured the server still starts and lists tools, and every tool call fails closed with a clear 'API key not configured' error.",
+  "manifest_version": "0.3",
+  "name": "veyline",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Payloadhq/veyline-mcp"
+  },
+  "server": {
+    "entry_point": "server/mcp/index.js",
+    "mcp_config": {
+      "args": [
+        "${__dirname}/server/mcp/index.js"
+      ],
+      "command": "node",
+      "env": {
+        "PAYLOAD_RAIL_API_KEY": "${user_config.rail_api_key}",
+        "PAYLOAD_RAIL_URL": "${user_config.rail_url}"
+      }
+    },
+    "type": "node"
+  },
+  "tools": [],
+  "user_config": {
+    "rail_api_key": {
+      "description": "Your own Payload rail API key for an existing Veyline organization (PAYLOAD_RAIL_API_KEY). Sent to the rail only as a Bearer Authorization header. Tools fail closed when unset.",
+      "required": false,
+      "sensitive": true,
+      "title": "Payload rail API key",
+      "type": "string"
+    },
+    "rail_url": {
+      "default": "https://payload-rail.fly.dev",
+      "description": "Payload rail base URL (PAYLOAD_RAIL_URL). Defaults to the production rail.",
+      "required": false,
+      "title": "Payload rail URL",
+      "type": "string"
+    }
+  },
+  "version": "1.0.0"
+}
