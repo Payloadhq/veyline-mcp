@@ -1,0 +1,30 @@
+{
+  "name": "veyline-mcp",
+  "version": "1.0.0",
+  "description": "Veyline by Payload as an MCP server: entitlement/usage reads and signed payment preflights via the Payload rail A2A API, using your own rail API key.",
+  "license": "MIT",
+  "author": "Payload",
+  "homepage": "https://payloadhq.github.io/veyline.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Payloadhq/veyline-mcp"
+  },
+  "keywords": [
+    "veyline",
+    "mcp",
+    "agents",
+    "payments",
+    "authorization"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "./mcp/index.js",
+  "bin": {
+    "veyline-mcp": "./mcp/index.js"
+  },
+  "scripts": {
+    "start": "node mcp/index.js"
+  },
+  "dependencies": {}
+}
