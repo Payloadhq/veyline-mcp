@@ -1,4 +1,4 @@
-<!-- mcp-name: io.github.Payloadhq/veyline-mcp -->
+<!-- mcp-name: io.github.payload-tools/veyline-mcp -->
 
 # Veyline by Payload — MCP Server
 
