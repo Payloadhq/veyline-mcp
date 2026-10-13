@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.Payloadhq/veyline-mcp",
+  "name": "io.github.payload-tools/veyline-mcp",
   "title": "Veyline by Payload",
   "description": "Veyline by Payload: agent entitlement and usage reads, signed payment preflights. No funds move.",
   "version": "1.0.0",
