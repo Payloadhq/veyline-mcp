@@ -14,6 +14,26 @@ Veyline decides whether an agent payment may proceed, under policy, before any w
 | `veyline_usage` | `POST /v1/a2a` (A2A skill `veyline_usage`) | Read the current authenticated organization's quota and usage. Does not change policy. |
 | `veyline_preflight` | `POST /v1/a2a` (A2A skill `veyline_preflight`) | Request a signed, short-lived, policy-enforced payment preflight. **No funds are transferred.** Requires Veyline execution scope and the original authoritative x402 quote. Inputs: `recipient`, `amount`, `asset`, `network`, optional `quote`. |
 
+## Adding Veyline to an agent workflow
+
+Veyline sits between an agent that wants to pay and the wallet that signs. You add it to the stack you already have; you do not rebuild around it.
+
+1. **The agent identifies a payment it intends to make.** Your application knows the recipient, amount, asset, and network.
+2. **The application obtains authoritative payment details.** For x402-priced actions, that is the original quote returned by the seller, not a number the agent guessed.
+3. **Veyline evaluates the proposed action.** Call `veyline_preflight` with the recipient, amount, asset, network, and the original quote when you have one. Veyline checks the request against your organization's authorization policies, spending limits, and permitted recipients before anything is signed.
+4. **An eligible request receives a scoped, signed, expiring authorization.** A preflight returns a signed, short-lived authorization bound to that payment intent. A request outside policy is refused, and nothing proceeds.
+5. **Your own wallet or signer executes the payment.** The customer's wallet, signer, or approved execution system performs the payment within the authorized boundaries. Veyline never holds funds and never signs in place of your wallet.
+6. **Evidence is recorded or verified through supported functionality.** Your application keeps the preflight result alongside the payment it authorized. On the same rail, RevRule records payout evidence linked back to the original entitlement entries, so a payout can later be checked against what was owed.
+
+Two reads round out the integration: `veyline_status` reports your organization's entitlement and tier, and `veyline_usage` reports quota and usage. Neither authorizes a payment.
+
+Plainly stated: Veyline provides governance and authorization without custody of customer funds. It does not execute payments itself, and it cannot guarantee that external payment systems, networks, or counterparties will not fail. What it does guarantee is narrower and useful: a payment your application routes through preflight gets a policy check before any wallet signs.
+
+### Evaluate free, then subscribe
+
+- **Free evaluation:** get a free Payload rail API key from the Payload console at https://payload-rail.fly.dev/revrule-console/ and point this server at it (`PAYLOAD_RAIL_API_KEY`), or install the server from Smithery. Run preflights against your own organization and see exactly what an allowed request and a refused request look like before you pay anything.
+- **Paid:** the Veyline Developer subscription starts at $99 per month via https://payloadhq.github.io/veyline.html and is the production path for payment-enabled agents and APIs that need policy-enforced authorization in the loop.
+
 ## Install
 
 ### Via Smithery
