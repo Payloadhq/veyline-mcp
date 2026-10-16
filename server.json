@@ -3,7 +3,7 @@
   "name": "io.github.payload-tools/veyline-mcp",
   "title": "Veyline by Payload",
   "description": "Veyline by Payload: agent entitlement and usage reads, signed payment preflights. No funds move.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "websiteUrl": "https://payloadhq.github.io/veyline.html",
   "repository": {
@@ -13,9 +13,9 @@
   "packages": [
     {
       "registryType": "mcpb",
-      "identifier": "https://github.com/Payloadhq/veyline-mcp/releases/download/v1.0.0/veyline.mcpb",
-      "fileSha256": "ee4b91bd61efb9e842caac20f8dbf2c0dd7c6c29fdafd0ba64ca7a44e4798df8",
-      "version": "1.0.0",
+      "identifier": "https://github.com/Payloadhq/veyline-mcp/releases/download/v1.1.0/veyline.mcpb",
+      "fileSha256": "38aa4e71fae57a7a575c8992d6121e777edb3fb89f7243fb3f190e11a735b546",
+      "version": "1.1.0",
       "transport": {
         "type": "stdio"
       }
