@@ -48,7 +48,86 @@
     },
     "type": "node"
   },
-  "tools": [],
+  "tools": [
+    {
+      "name": "veyline_status",
+      "description": "Read your authenticated Veyline organization entitlement and tier.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "veyline_usage",
+      "description": "Read Veyline quota and usage for your authenticated organization.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "veyline_preflight",
+      "description": "Evaluate an authoritative quote under Veyline policy; this does not move money.",
+      "inputSchema": {
+        "type": "object",
+        "required": [
+          "protocol",
+          "provider",
+          "action",
+          "network",
+          "asset",
+          "amount_cents",
+          "recipient",
+          "request_hash",
+          "quote_id",
+          "quote"
+        ],
+        "properties": {
+          "protocol": {
+            "type": "string",
+            "const": "x402"
+          },
+          "provider": {
+            "type": "string",
+            "const": "callx402"
+          },
+          "action": {
+            "type": "string"
+          },
+          "network": {
+            "type": "string",
+            "const": "eip155:8453"
+          },
+          "asset": {
+            "type": "string",
+            "const": "USDC"
+          },
+          "amount_cents": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "recipient": {
+            "type": "string"
+          },
+          "request_hash": {
+            "type": "string"
+          },
+          "quote_id": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "object"
+          },
+          "wallet_address": {
+            "type": "string"
+          },
+          "approval_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
   "user_config": {
     "rail_api_key": {
       "description": "Your own Payload rail API key for an existing Veyline organization (PAYLOAD_RAIL_API_KEY). Sent to the rail only as a Bearer Authorization header. Tools fail closed when unset.",
@@ -65,5 +144,5 @@
       "type": "string"
     }
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
