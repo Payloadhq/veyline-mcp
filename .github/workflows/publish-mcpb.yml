@@ -38,7 +38,7 @@ jobs:
         run: |
           VERSION=$(node -p "require('./package.json').version")
           if gh release view "v$VERSION" >/dev/null 2>&1; then
-            gh release upload "v$VERSION" veyline.mcpb --clobber
+            echo "Release v$VERSION already exists; preserving immutable published asset and checksum"
           else
             gh release create "v$VERSION" veyline.mcpb --target "$GITHUB_SHA" --title "veyline v$VERSION" --notes "Verified MCPB build from the source release."
           fi
