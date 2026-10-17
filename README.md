@@ -31,7 +31,7 @@ Plainly stated: Veyline provides governance and authorization without custody of
 
 ### Evaluate free, then subscribe
 
-- **Evaluation:** use a valid Payload rail API key associated with your Veyline organization. Install the verified MCPB release below; no preconfigured key is included.
+- **Evaluation:** get a free Payload rail API key from the sandbox signup on https://payloadhq.github.io/veyline.html (email only, free tier with 1,000 operations per month) or from the console at https://payload-rail.fly.dev/revrule-console/, and use it with your Veyline organization. Install the verified MCPB release below; no preconfigured key is included.
 - **Paid:** the Veyline Developer subscription starts at $99 per month via https://payloadhq.github.io/veyline.html and is the production path for payment-enabled agents and APIs that need policy-enforced authorization in the loop.
 
 ## Install
